@@ -1,0 +1,38 @@
+.container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 10%;
+}
+
+.card-container {
+    margin: 10px;
+    display: flex;
+}
+.card {
+    margin: 10px;
+}
+
+.add-card {
+    margin: 10px;
+    width: 400px;
+    border: 3px dashed grey;
+}
+
+.add-card-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-icon {
+    transform: scale(4);
+}
+
+.add-card-button {
+    /*transform: scale(3);*/
+    height: 100%;
+    width: 100%;
+}
