@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CardData } from '../notes-page/notes-page.component';
 
 @Component({
-  selector: 'card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+    selector: 'card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+    @Input() title: string = "";
+    @Input() cardData: CardData = {
+        title: "woof woof",
+        subtitle: "much wow"
+    };
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
 
 }
