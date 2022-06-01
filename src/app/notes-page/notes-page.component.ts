@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CardBlockType, CardData } from '../card-data';
 
 @Component({
     selector: 'notes-page',
@@ -16,15 +17,29 @@ export class NotesPageComponent implements OnInit {
 
     cardList: CardData[] = [{
         title: "woof woof",
-        subtitle: "much wow"
+        subtitle: "much wow",
+        logo: "a",
+        blocks:  [{
+            type: CardBlockType.TEXT,
+            content: "truc",
+            position: {
+                x:0,y:0,width:0,length:0
+            },
+        }],
+        tags: [""]
     },
     {
         title: "wooouaf wouaaaf",
-        subtitle: "such wow"
+        subtitle: "such wow",
+        logo: "a",
+        blocks:  [{
+            type: CardBlockType.TEXT,
+            content: "truc",
+            position: {
+                x:0,y:0,width:0,length:0
+            },
+        }],
+        tags: [""]
     }];
 }
 
-export interface CardData {
-    title: string;
-    subtitle: string;
-}
