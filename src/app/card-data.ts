@@ -1,7 +1,7 @@
 export interface CardData {
     title: string;
     subtitle: string;
-    logo: string;
+    logoUrl: string;
     blocks: CardBlock[];
     tags: string[];
 }

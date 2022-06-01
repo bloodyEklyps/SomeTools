@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
     @Input() cardData: CardData = {
         title: "woof woof",
         subtitle: "much wow",
-        logo: "a",
+        logoUrl: "",
         blocks:  [{
             type: CardBlockType.TEXT,
             content: "truc",
