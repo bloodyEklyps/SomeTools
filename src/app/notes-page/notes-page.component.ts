@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardBlockType, CardData } from '../card-data';
+import noteData from '../../assets/note-data.json';
 
 @Component({
     selector: 'notes-page',
@@ -25,32 +26,7 @@ export class NotesPageComponent implements OnInit {
     }];
 
     loadCardList(){
-        this.cardList = [{
-            title: "woof woof",
-            subtitle: "much wow",
-            logoUrl: "https://material.angular.io/assets/img/examples/shiba1.jpg",
-            blocks:  [{
-                type: CardBlockType.TEXT,
-                content: "truc",
-                position: {
-                    x:0,y:0,width:0,length:0
-                },
-            }],
-            tags: [""]
-        },
-        {
-            title: "on prend des note",
-            subtitle: "blockNote?",
-            logoUrl: "https://static.vecteezy.com/system/resources/thumbnails/004/852/860/small/notes-notepad-notebook-memo-diary-paper-line-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg",
-            blocks:  [{
-                type: CardBlockType.TEXT,
-                content: "truc",
-                position: {
-                    x:0,y:0,width:0,length:0
-                },
-            }],
-            tags: [""]
-        }];
+        this.cardList = noteData;
     }
 }
 
