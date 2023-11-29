@@ -1,10 +1,10 @@
 <mat-drawer-container class="container" autosize>
 
     <mat-drawer class="sidenav" mode="side" opened>
-        <mat-selection-list #shoes [multiple]="false">
-            <mat-list-option *ngFor="let element of sidenavContent" [value]="element">
+        <mat-selection-list [multiple]="false">
+            <!-- <mat-list-option *ngFor="let element of sidenavContent" [value]="element">
                 {{element}}
-            </mat-list-option>
+            </mat-list-option> -->
         </mat-selection-list>
     </mat-drawer>
 
@@ -13,7 +13,7 @@
         <card class="card" *ngFor="let cardData of cardList" [cardData]="cardData"></card>
         <div class="add-card">
             <div class="add-card-content">
-                <button mat-button class="add-card-button" aria-label="Ajouter une note">
+                <button mat-button class="add-card-button" aria-label="Ajouter une note" (click)="editNewNote()">
                     <mat-icon class="add-icon">add</mat-icon>
                 </button>
             </div>

@@ -12,16 +12,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { NotesPageComponent } from './notes-page/notes-page.component';
 import { CardComponent } from './card/card.component';
-import { MatCardModule } from '@angular/material/card';
+import { EditNoteDialogComponent } from './edit-note-dialog/edit-note-dialog.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MainPageComponent,
         NotesPageComponent,
-        CardComponent
+        CardComponent,
+        EditNoteDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -32,7 +37,9 @@ import { MatCardModule } from '@angular/material/card';
         MatIconModule,
         MatSidenavModule,
         MatListModule,
-        MatCardModule
+        MatCardModule,
+        MatDialogModule,
+        MatSnackBarModule
     ],
     providers: [],
     bootstrap: [AppComponent]
