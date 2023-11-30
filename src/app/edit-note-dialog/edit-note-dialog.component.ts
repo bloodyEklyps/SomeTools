@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { CardBlockType, CardBlock, CardData } from '../card-data';
 
 @Component({
   selector: 'app-edit-note-dialog',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditNoteDialogComponent implements OnInit {
 
-  constructor() { }
+    @ViewChild('titleInput') titleInput!: ElementRef;
 
-  ngOnInit(): void {
-  }
+    titleEdit: boolean = false;
+    cardData: CardData = {
+        title: "Nouvelle note",
+        subtitle: "",
+        logoUrl: "",
+        blocks:  [],
+        tags: [""]
+    };
 
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+    toggleEdit(){
+        this.titleEdit = ! this.titleEdit;
+        setTimeout(()=>{
+            this.titleInput.nativeElement.focus();
+        },0);
+    }
 }
