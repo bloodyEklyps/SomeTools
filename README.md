@@ -14,13 +14,11 @@ The first one is an app to create/manage little notes : **Notes**
 - Creation des notes basique => DONE
 - Chargement des notes à partir d'un fichier json => DONE
 
-- Ajout de nouvelle notes en cliquant sur le bouton d'ajout (+)
+- Ajout de nouvelle notes en cliquant sur le bouton d'ajout (+) => In progress
 - Sauvegarde des notes créées (automatique à la fin d'édition d'une note + bouton save dans l'interface d'édition)
 
-- Faire une maquette d'IHM d'édition des notes
-
 ######## ETAPE IMPORTANTE ########
-- Ajout d'une IHM de d'édition des notes (fenetre modale)
+- Ajout d'une IHM de d'édition des notes (fenetre modale) => In progress
     - ajout/suppression de composants dans la notes
     - gestion de la disposition des composants (proposition de layout d'affichage par défaut?)
 ##################################
@@ -37,3 +35,5 @@ The first one is an app to create/manage little notes : **Notes**
     - Filtrage sur le titre de la note
 
 - Refonte IHM à partir des maquettes (~/workspace/SomeTools/wireframe)
+
+- Ajouter des couleurs aux tags

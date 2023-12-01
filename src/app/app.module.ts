@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { NotesPageComponent } from './notes-page/notes-page.component';
 import { CardComponent } from './card/card.component';
@@ -45,6 +46,7 @@ import { EditNoteDialogComponent } from './edit-note-dialog/edit-note-dialog.com
         MatSnackBarModule,
         MatInputModule,
         FormsModule,
+        MatSelectModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

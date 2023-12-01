@@ -15,9 +15,11 @@ export class EditNoteDialogComponent implements OnInit {
         title: "Nouvelle note",
         subtitle: "",
         logoUrl: "",
-        blocks:  [],
-        tags: [""]
+        blocks: [],
+        tags: []
     };
+
+    selectedTag: string = "";
 
     constructor() { }
 
@@ -29,5 +31,25 @@ export class EditNoteDialogComponent implements OnInit {
         setTimeout(()=>{
             this.titleInput.nativeElement.focus();
         },0);
+    }
+
+    addBlock(){
+        this.cardData.blocks.push({
+            type: CardBlockType.TEXT,
+            position: {
+                x : 0,
+                y : 0,
+                width : 0,
+                length : 0,
+            },
+            content: "default content",
+        });
+    }
+
+    addTag()
+    {
+        if((this.selectedTag != "") && (!this.cardData.tags.includes(this.selectedTag))){
+            this.cardData.tags.push(this.selectedTag)
+        }
     }
 }
