@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { NotesPageComponent } from './notes-page/notes-page.component';
 import { CardComponent } from './card/card.component';
@@ -47,6 +48,7 @@ import { EditNoteDialogComponent } from './edit-note-dialog/edit-note-dialog.com
         MatInputModule,
         FormsModule,
         MatSelectModule,
+        DragDropModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 <div>
     <div [hidden]="titleEdit">
-        <h2>
+        <h1>
             {{cardData.title}}
             <button mat-icon-button aria-label="edit title button" (click)="toggleEdit()">
                 <mat-icon>edit</mat-icon>
             </button>
-        </h2>
+        </h1>
     </div>
     <div [hidden]="!titleEdit">
         <mat-form-field>
@@ -19,17 +19,37 @@
 
     <mat-divider></mat-divider>
 
-    <div *ngFor="let block of cardData.blocks; index as i;">
-        <mat-form-field appearance="fill">
-            <mat-label>Type du bloc</mat-label>
-            <mat-select [(value)]="block.type">
-                <mat-option value="1">Texte</mat-option>
-                <mat-option value="2">Image</mat-option>
-                <mat-option value="3">Barre de progression</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <p>{{block.content}}</p>
+
+    <h2>Liste des blocs</h2>
+
+    <div cdkDropList class="block-list" (cdkDropListDropped)="drop($event)">
+        <div
+            class="block-box"
+            *ngFor="let block of cardData.blocks; index as i;"
+            cdkDrag>
+            <h2>Bloc n°{{i}}</h2>
+            <mat-form-field appearance="fill">
+                <mat-label>Type du bloc</mat-label>
+                <mat-select [(value)]="block.type">
+                    <mat-option [value]=1>Texte</mat-option>
+                    <mat-option [value]=2>Image</mat-option>
+                    <mat-option [value]=3>Barre de progression</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="width: 60%;">
+                <mat-label>Contenu du bloc</mat-label>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" placeholder="..." [value]="block.content"></textarea>
+            </mat-form-field>
+            <div class="block-handle" cdkDragHandle>
+                <svg width="24px" fill="currentColor" >
+                    <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                </svg>
+            </div>
+        </div>
     </div>
+
+
 
     <button mat-icon-button aria-label="add block" (click)="addBlock()">
         <mat-label>Ajouter un bloc </mat-label>
@@ -52,9 +72,12 @@
         <mat-label>Ajouter un tag </mat-label>
         <mat-icon>add</mat-icon>
     </button>
-    <div *ngFor="let tags of cardData.tags">
-        <p>{{tags}}</p>
+    <div>
+        <div *ngFor="let tags of cardData.tags" style="display: inline; margin-right:5px">
+            {{tags}}
+        </div>
     </div>
+
 </mat-dialog-content>
 
 <mat-divider></mat-divider>

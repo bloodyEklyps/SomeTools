@@ -1,5 +1,16 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import {
+    CdkDragDrop,
+    CdkDrag,
+    CdkDragHandle,
+    CdkDropList,
+    CdkDropListGroup,
+    moveItemInArray,
+    transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { CardBlockType, CardBlock, CardData } from '../card-data';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-note-dialog',
@@ -9,6 +20,8 @@ import { CardBlockType, CardBlock, CardData } from '../card-data';
 export class EditNoteDialogComponent implements OnInit {
 
     @ViewChild('titleInput') titleInput!: ElementRef;
+    @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+
 
     titleEdit: boolean = false;
     cardData: CardData = {
@@ -21,9 +34,14 @@ export class EditNoteDialogComponent implements OnInit {
 
     selectedTag: string = "";
 
-    constructor() { }
+    constructor(private _ngZone: NgZone) { }
 
     ngOnInit(): void {
+    }
+
+    triggerResize() {
+      // Wait for changes to be applied, then trigger textarea resize.
+      this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
     }
 
     toggleEdit(){
@@ -34,6 +52,7 @@ export class EditNoteDialogComponent implements OnInit {
     }
 
     addBlock(){
+        //default block
         this.cardData.blocks.push({
             type: CardBlockType.TEXT,
             position: {
@@ -52,4 +71,18 @@ export class EditNoteDialogComponent implements OnInit {
             this.cardData.tags.push(this.selectedTag)
         }
     }
+
+    drop(event: CdkDragDrop<string[]>) {
+        if (event.previousContainer === event.container) {
+            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        } else {
+            transferArrayItem(
+                event.previousContainer.data,
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex,
+            );
+        }
+    }
+
 }
