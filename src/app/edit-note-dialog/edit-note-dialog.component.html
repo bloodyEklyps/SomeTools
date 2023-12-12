@@ -1,7 +1,7 @@
 <div>
     <div [hidden]="titleEdit">
         <h1>
-            {{cardData.title}}
+            {{data.title}}
             <button mat-icon-button aria-label="edit title button" (click)="toggleEdit()">
                 <mat-icon>edit</mat-icon>
             </button>
@@ -10,88 +10,90 @@
     <div [hidden]="!titleEdit">
         <mat-form-field>
             <mat-label>Titre</mat-label>
-            <input matInput type="text" [(ngModel)]="cardData.title" (focusout)="toggleEdit()" #titleInput>
+            <input matInput type="text" [(ngModel)]="data.title" (focusout)="toggleEdit()" #titleInput>
         </mat-form-field>
     </div>
 </div>
 
-<mat-dialog-content class="mat-typography">
+<div class="container">
+    <mat-dialog-content class="mat-typography">
 
-    <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-    <h2>Liste des blocs</h2>
+        <h2>Liste des blocs</h2>
 
-    <div cdkDropList class="block-list" (cdkDropListDropped)="drop($event)">
-        <div
-            class="block-box"
-            *ngFor="let block of cardData.blocks; index as i;"
-            cdkDrag>
-            <h3>Bloc n°{{i}}</h3>
+        <div cdkDropList class="block-list" (cdkDropListDropped)="drop($event)">
+            <div
+                class="block-box"
+                *ngFor="let block of data.blocks; index as i;"
+                cdkDrag>
+                <h3>Bloc n°{{i}}</h3>
 
-            <div class="block-handle" cdkDragHandle>
-                <svg width="24px" height="24px" fill="currentColor" >
-                    <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                </svg>
+                <div class="block-handle" cdkDragHandle>
+                    <svg width="24px" height="24px" fill="currentColor" >
+                        <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                    </svg>
+                </div>
+
+                <div class="block-data">
+                    <mat-form-field appearance="fill" class="block-type">
+                        <mat-label>Type du bloc</mat-label>
+                        <mat-select [(value)]="block.type">
+                            <mat-option [value]=1>Texte</mat-option>
+                            <mat-option [value]=2>Image</mat-option>
+                            <mat-option [value]=3>Barre de progression</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="block-content">
+                        <mat-label>Contenu du bloc</mat-label>
+                        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" placeholder="..." [value]="block.content"></textarea>
+                    </mat-form-field>
+                </div>
+
             </div>
-
-            <div class="block-data">
-                <mat-form-field appearance="fill" class="block-type">
-                    <mat-label>Type du bloc</mat-label>
-                    <mat-select [(value)]="block.type">
-                        <mat-option [value]=1>Texte</mat-option>
-                        <mat-option [value]=2>Image</mat-option>
-                        <mat-option [value]=3>Barre de progression</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="block-content">
-                    <mat-label>Contenu du bloc</mat-label>
-                    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" placeholder="..." [value]="block.content"></textarea>
-                </mat-form-field>
-            </div>
-
         </div>
-    </div>
 
-    <button mat-stroked-button aria-label="add block" (click)="addBlock()">
-        <mat-label>Ajouter un bloc </mat-label>
-        <mat-icon>add</mat-icon>
-    </button>
+        <button mat-stroked-button aria-label="add block" (click)="addBlock()">
+            <mat-label>Ajouter un bloc </mat-label>
+            <mat-icon>add</mat-icon>
+        </button>
 
-    <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-    <h2>Tags</h2>
+        <h2>Tags</h2>
 
-    <mat-form-field appearance="fill" class="select-tag-form">
-        <mat-label>Selectionner un tag</mat-label>
-        <mat-select [(value)]="selectedTag">
-            <mat-option>None</mat-option>
-            <mat-option value="TAG1">TAG1</mat-option>
-            <mat-option value="TAG2">TAG2</mat-option>
-            <mat-option value="TAG3">TAG3</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <button mat-stroked-button aria-label="add block" (click)="addTag()" [disabled]="selectedTag == ''" class="add-tag-button">
-        <mat-label>Ajouter un tag </mat-label>
-        <mat-icon>add</mat-icon>
-    </button>
+        <mat-form-field appearance="fill" class="select-tag-form">
+            <mat-label>Selectionner un tag</mat-label>
+            <mat-select [(value)]="selectedTag">
+                <mat-option>None</mat-option>
+                <mat-option value="TAG1">TAG1</mat-option>
+                <mat-option value="TAG2">TAG2</mat-option>
+                <mat-option value="TAG3">TAG3</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-stroked-button aria-label="add block" (click)="addTag()" [disabled]="selectedTag == ''" class="add-tag-button">
+            <mat-label>Ajouter un tag </mat-label>
+            <mat-icon>add</mat-icon>
+        </button>
 
-    <div class="tag-list">
-        <mat-chip-list aria-label="Tag list" >
-            <mat-chip *ngFor="let tags of cardData.tags" style="color:red;background-color: aqua;">
-                <mat-chip-avatar class="tag-element">
-                    <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu"/>
-                </mat-chip-avatar>
-            {{tags}}
-            </mat-chip>
-        </mat-chip-list>
-    </div>
+        <div class="tag-list">
+            <mat-chip-list aria-label="Tag list" >
+                <mat-chip *ngFor="let tags of data.tags" style="color:red;background-color: aqua;">
+                    <mat-chip-avatar class="tag-element">
+                        <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu"/>
+                    </mat-chip-avatar>
+                {{tags}}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
 
-</mat-dialog-content>
+    </mat-dialog-content>
+</div>
 
 <mat-divider></mat-divider>
 
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Annuler</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Sauvegarder</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Sauvegarder</button>
 </mat-dialog-actions>

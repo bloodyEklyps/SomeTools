@@ -45,11 +45,19 @@ export class NotesPageComponent implements OnInit {
         const dialogRef = this.dialog.open(EditNoteDialogComponent, {
             height: "90%",
             width: "90%",
+            data: {
+                title: "Nouvelle note",
+                subtitle: "",
+                logoUrl: "",
+                blocks: [],
+                tags: []
+              }
           });
 
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe(result => { //TODO blocks content not returned correctly
             console.log("Dialog result: ${result}");
             if(result){
+                console.log(result);
                 this.saveCardList();
             } else {
                 console.log("cancel");

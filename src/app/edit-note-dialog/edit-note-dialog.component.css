@@ -93,3 +93,7 @@ mat-divider{
 .tag-list {
     margin-top: 2em;
 }
+
+.container {
+    height: calc(90% - 58px); /*size of dialog minus size of footer*/
+}

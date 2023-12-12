@@ -1,16 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, Inject} from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
     CdkDragDrop,
-    CdkDrag,
-    CdkDragHandle,
-    CdkDropList,
-    CdkDropListGroup,
     moveItemInArray,
     transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { CardBlockType, CardBlock, CardData } from '../card-data';
 import { take } from 'rxjs/operators';
+import { MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-note-dialog',
@@ -22,19 +19,10 @@ export class EditNoteDialogComponent implements OnInit {
     @ViewChild('titleInput') titleInput!: ElementRef;
     @ViewChild('autosize') autosize!: CdkTextareaAutosize;
 
-
     titleEdit: boolean = false;
-    cardData: CardData = {
-        title: "Nouvelle note",
-        subtitle: "",
-        logoUrl: "",
-        blocks: [],
-        tags: []
-    };
-
     selectedTag: string = "";
 
-    constructor(private _ngZone: NgZone) { }
+    constructor(private _ngZone: NgZone, @Inject(MAT_DIALOG_DATA) public data: CardData) { }
 
     ngOnInit(): void {
     }
@@ -53,7 +41,7 @@ export class EditNoteDialogComponent implements OnInit {
 
     addBlock(){
         //default block
-        this.cardData.blocks.push({
+        this.data.blocks.push({
             type: CardBlockType.TEXT,
             position: {
                 x : 0,
@@ -67,8 +55,8 @@ export class EditNoteDialogComponent implements OnInit {
 
     addTag()
     {
-        if((this.selectedTag != "") && (!this.cardData.tags.includes(this.selectedTag))){
-            this.cardData.tags.push(this.selectedTag)
+        if((this.selectedTag != "") && (!this.data.tags.includes(this.selectedTag))){
+            this.data.tags.push(this.selectedTag)
         }
     }
 
